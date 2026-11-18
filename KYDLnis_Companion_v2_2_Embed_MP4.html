@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111426">
+<title>KYDLnis Companion</title>
+<style>
+:root{--bg:#0b0e1b;--surface:#141a2d;--surface2:#1b2340;--surface3:#222c4b;--text:#f4f6ff;--muted:#9da8c5;--line:#303b5e;--accent:#8c7bff;--accent2:#4dd8bd;--bad:#ff8998;--good:#73e0b6;--shadow:0 18px 55px #0005}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% -10%,#342d68 0,transparent 36%),radial-gradient(ellipse at 100% 10%,#10434a 0,transparent 30%),var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.app{max-width:1440px;margin:auto;min-height:100vh}.topbar{height:70px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12;background:#0d1120d9;backdrop-filter:blur(18px);position:sticky;top:0;z-index:5}.brand{display:flex;align-items:center;gap:11px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#101426;font-weight:950;font-size:21px}.brand strong{font-size:18px;letter-spacing:.3px}.brand small{display:block;color:var(--muted);font-size:10px}.top-actions{display:flex;gap:8px;align-items:center}.iconbtn,.btn{border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:11px;padding:9px 12px}.btn.primary{background:linear-gradient(135deg,#8c7bff,#657cf0);border:0;color:white;font-weight:750}.btn.teal{background:linear-gradient(135deg,#30b99e,#218b9a);border:0;color:#061a1b;font-weight:800}.btn.danger{color:#ffb4bc;border-color:#74414c}.btn:disabled{opacity:.4;cursor:not-allowed}.shell{display:grid;grid-template-columns:236px minmax(0,1fr);min-height:calc(100vh - 70px)}.sidebar{padding:18px 12px;border-right:1px solid #ffffff12;background:#0d1221a8}.navlabel{padding:12px 12px 6px;color:#7582a5;font-size:10px;font-weight:800;letter-spacing:1.2px}.nav{display:flex;flex-direction:column;gap:4px}.nav button{width:100%;text-align:left;display:flex;gap:11px;align-items:center;padding:10px 12px;border:1px solid transparent;background:transparent;color:var(--muted);border-radius:11px}.nav button:hover,.nav button.active{background:#8c7bff1b;border-color:#8c7bff40;color:var(--text)}.nav .ico{width:21px;text-align:center;font-size:16px}.side-note{margin:22px 7px 0;padding:12px;border:1px solid var(--line);border-radius:13px;color:var(--muted);font-size:11px}
+main{padding:25px;min-width:0}.pagehead{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;margin-bottom:20px}.pagehead h1{font-size:26px;margin:0 0 3px}.pagehead p{color:var(--muted);margin:0}.badge{font-size:10px;border:1px solid #4a587b;border-radius:99px;padding:5px 9px;color:#c6cce1;white-space:nowrap}.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,.8fr);gap:16px}.card{background:linear-gradient(145deg,#1a2139ed,#12182bed);border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:var(--shadow);min-width:0}.card h2{font-size:14px;margin:0 0 13px}.muted{color:var(--muted)}.tiny{font-size:11px}.row{display:flex;align-items:center;gap:9px}.wrap{flex-wrap:wrap}.grow{flex:1;min-width:0}.field{width:100%;background:#0d1326;border:1px solid var(--line);border-radius:11px;padding:11px 12px;color:var(--text);min-width:0}.field:focus{border-color:var(--accent);outline:none}.urlrow{display:flex;gap:8px}.urlrow .field{flex:1}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}.chip{font-size:11px;border:1px solid var(--line);background:#ffffff07;border-radius:99px;padding:5px 9px;color:var(--muted)}.notice{padding:11px 12px;border-radius:12px;background:#8c7bff14;border:1px solid #8c7bff45;color:#d7d1ff;font-size:12px;margin-top:12px}.notice.warn{background:#f5b84d12;border-color:#98733c;color:#f4d49b}.notice.good{background:#4dd8bd12;border-color:#337e70;color:#a5f0dc}.preview{margin-top:14px;border:1px solid var(--line);background:#080b14;border-radius:14px;aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden}.preview iframe,.preview video,.preview audio{width:100%;height:100%;border:0}.preview>div{width:100%;height:100%}.preview .empty{max-width:620px}.preview .empty p{color:var(--muted)}.preview audio{height:60px;padding:12px}.preview .empty{text-align:center;color:var(--muted);padding:20px}.empty b{display:block;color:var(--text);margin-bottom:4px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:13px}.stat{padding:10px;background:#ffffff07;border:1px solid var(--line);border-radius:12px}.stat b{display:block;font-size:14px}.stat span{font-size:10px;color:var(--muted)}.stack{display:flex;flex-direction:column;gap:9px}.listitem{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:12px;background:#ffffff05}.listitem .desc{min-width:0;flex:1}.listitem strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}.listitem small{display:block;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px}.mini{padding:6px 9px;font-size:11px}.toolgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.tool{border:1px solid var(--line);background:#ffffff06;border-radius:13px;padding:13px;text-align:left;color:var(--text);min-height:92px}.tool:hover{background:#8c7bff16;border-color:#8174dc}.tool span{display:block;font-size:20px;margin-bottom:6px}.tool b{display:block;font-size:12px}.tool small{color:var(--muted);font-size:10px}.panel{display:none}.panel.active{display:block;animation:fade .2s ease}@keyframes fade{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}.featurelist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.feature{padding:10px;border:1px solid var(--line);border-radius:11px;background:#ffffff05;font-size:12px}.feature em{font-style:normal;color:var(--accent2);margin-right:7px}.status{font-size:12px;color:var(--muted);margin-top:10px;min-height:18px}.status.error{color:var(--bad)}.status.good{color:var(--good)}.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{text-align:left;padding:10px 7px;border-bottom:1px solid var(--line)}.table th{color:var(--muted);font-weight:600}.setting{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #ffffff12}.setting:last-child{border:0}.setting strong{font-size:12px;display:block}.setting small{color:var(--muted);font-size:10px}.toggle{accent-color:var(--accent);width:18px;height:18px}.mobilebar{display:none}.footer{text-align:center;color:#7884a4;font-size:10px;padding:25px}
+body.light{--bg:#eef1fa;--surface:#fff;--surface2:#e6eafa;--surface3:#dce3f7;--text:#1a2033;--muted:#5e6885;--line:#d1d9ec;background:#eef1fa;color:var(--text)}body.light .topbar,body.light .sidebar{background:#f8f9ffed}body.light .card{background:#ffffffed}body.light .field{background:#f7f8fd;color:var(--text)}body.light .listitem,body.light .tool,body.light .feature,body.light .stat{background:#f7f8fd}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.sidebar{display:none}main{padding:17px 13px 90px}.grid{grid-template-columns:1fr}.mobilebar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:8;background:#111729f2;border-top:1px solid var(--line);padding:7px max(7px,env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom));justify-content:space-around;backdrop-filter:blur(16px)}.mobilebar button{background:none;border:0;color:var(--muted);font-size:10px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px}.mobilebar button.active{color:#b7adff}.mobilebar span{font-size:17px}.topbar{padding:0 13px}.toolgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:500px){.pagehead h1{font-size:22px}.pagehead{align-items:center}.badge{display:none}.urlrow{flex-direction:column}.urlrow .btn{width:100%}.statgrid{grid-template-columns:repeat(3,1fr)}.featurelist{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+ <div class="brand"><div class="logo">K</div><div><strong>KYDLnis</strong><small>MEDIA DOWNLOADER COMPANION</small></div></div>
+ <div class="top-actions"><span class="badge">Independent project · Not affiliated with YTDLnis</span><button class="iconbtn" id="themeBtn" title="Toggle theme">☼</button></div>
+</header>
+<div class="shell">
+<aside class="sidebar">
+ <div class="navlabel">WORKSPACE</div><nav class="nav" id="sideNav">
+ <button class="active" data-page="home"><span class="ico">⌂</span>Home</button>
+ <button data-page="downloads"><span class="ico">⇩</span>Downloads</button>
+ <button data-page="queue"><span class="ico">☷</span>Queue</button>
+ <button data-page="playlists"><span class="ico">▤</span>Playlists & Batch</button>
+ <button data-page="scheduled"><span class="ico">◷</span>Scheduled</button>
+ <button data-page="observe"><span class="ico">◉</span>Observe Sources</button>
+ <div class="navlabel">MEDIA TOOLS</div>
+ <button data-page="audio"><span class="ico">♫</span>Audio Tools</button>
+ <button data-page="video"><span class="ico">▣</span>Video Tools</button>
+ <button data-page="subtitles"><span class="ico">CC</span>Subtitles & Lyrics</button>
+ <button data-page="editor"><span class="ico">✂</span>Cut & Crop</button>
+ <div class="navlabel">ADVANCED</div>
+ <button data-page="commands"><span class="ico">⌘</span>Command Templates</button>
+ <button data-page="terminal"><span class="ico">▤</span>Terminal</button>
+ <button data-page="cookies"><span class="ico">◈</span>Cookies</button>
+ <button data-page="packages"><span class="ico">⬡</span>Packages & Engine</button>
+ <button data-page="history"><span class="ico">↶</span>History & Logs</button>
+ <button data-page="files"><span class="ico">▱</span>File Manager</button>
+ <button data-page="backup"><span class="ico">▣</span>Backup & Restore</button>
+ <button data-page="settings"><span class="ico">⚙</span>Settings</button>
+</nav>
+<div class="side-note"><b style="color:var(--text)">Engine connection</b><br><span id="engineSide">Browser UI ready. Native engine not detected.</span></div>
+</aside>
+<main>
+<section class="panel active" id="page-home">
+ <div class="pagehead"><div><h1>Welcome to KYDLnis</h1><p>Prepare media tasks and hand them off to your Android downloader.</p></div><span class="badge">Dashboard</span></div>
+ <div class="grid">
+  <div class="card">
+   <h2>⌕ &nbsp; Add media URL</h2>
+   <div class="urlrow"><input id="mediaUrl" class="field" type="text" placeholder="Paste a media URL or YouTube iframe code"><button class="btn primary" id="inspectBtn">Inspect / Preview</button></div>
+   <label class="tiny muted" for="embedCode" style="display:block;margin-top:12px">YouTube iframe embed code (optional)</label>
+   <textarea id="embedCode" class="field" rows="3" placeholder="Paste the complete &lt;iframe ...&gt; code here"></textarea>
+   <div class="row wrap" style="margin-top:8px"><button class="btn" id="previewEmbedBtn">Preview iframe code</button><button class="btn" id="clearEmbedBtn">Clear embed code</button></div>
+   <div class="chips"><span class="chip">Video</span><span class="chip">Audio</span><span class="chip">Playlist</span><span class="chip">Batch links</span><span class="chip">Supported sites depend on yt-dlp</span></div>
+   <div class="preview" id="preview"><div class="empty"><div style="font-size:34px">▶</div><b>Media preview area</b>Inspect a URL to see a supported preview or send it to the native app.</div></div>
+   <div class="notice warn">A web page cannot run YTDLnis' Android engine directly. Use “Send to YTDLnis” to hand the URL to the installed Android app. Preview and extraction are separate functions.</div>
+   <div class="row wrap" style="margin-top:12px"><button class="btn primary" id="downloadMp4Btn" hidden>Download verified MP4</button><button class="btn teal" id="sendVideo">Send as Video</button><button class="btn" id="sendAudio">Send as Audio</button><button class="btn" id="sendCommand">Open Command Mode</button><button class="btn" id="copyUrl">Copy URL</button></div>
+   <div class="status" id="homeStatus" role="status">Ready. Paste a URL to begin.</div>
+  </div>
+  <div class="stack">
+   <div class="card"><h2>Quick actions</h2><div class="toolgrid">
+    <button class="tool" data-go="queue"><span>☷</span><b>Download queue</b><small>View locally saved tasks</small></button>
+    <button class="tool" data-go="playlists"><span>▤</span><b>Batch links</b><small>Prepare multiple URLs</small></button>
+    <button class="tool" data-go="scheduled"><span>◷</span><b>Schedule</b><small>Plan a task in the app</small></button>
+    <button class="tool" data-go="settings"><span>⚙</span><b>Preferences</b><small>Theme and defaults</small></button>
+   </div></div>
+   <div class="card"><h2>Local overview</h2><div class="statgrid"><div class="stat"><b id="statQueue">0</b><span>Local tasks</span></div><div class="stat"><b id="statHistory">0</b><span>Recent links</span></div><div class="stat"><b id="statBatch">0</b><span>Batch URLs</span></div></div><p class="tiny muted">These counts belong to this browser interface; they are not the native app's download statistics.</p></div>
+   <div class="card"><h2>Recent links</h2><div class="stack" id="recentList"><div class="muted tiny">No recent links yet.</div></div></div>
+  </div>
+ </div>
+</section>
+<section class="panel" id="page-downloads"><div class="pagehead"><div><h1>Downloads</h1><p>Send new work to the native downloader and track handoff attempts.</p></div><span class="badge">Native app required</span></div><div class="card"><h2>Download actions</h2><p class="muted">Choose a URL on Home, then send it as audio or video. Completed downloads are managed by the installed Android application.</p><button class="btn primary" data-go="home">＋ Add URL</button><div class="notice">This browser page cannot read the native app's private download database or claim a task has completed.</div></div></section>
+<section class="panel" id="page-queue"><div class="pagehead"><div><h1>Queue</h1><p>Local handoff list for URLs you prepare here.</p></div><button class="btn danger" id="clearQueue">Clear local queue</button></div><div class="card"><div id="queueList" class="stack"><div class="muted tiny">Queue is empty.</div></div></div></section>
+<section class="panel" id="page-playlists"><div class="pagehead"><div><h1>Playlists & Batch</h1><p>Prepare multiple links and send them individually to the native app.</p></div></div><div class="card"><h2>Paste one URL per line</h2><textarea id="batchInput" class="field" rows="7" placeholder="https://example.com/media-one&#10;https://example.com/media-two"></textarea><div class="row wrap" style="margin-top:10px"><button class="btn primary" id="parseBatch">Add links to local queue</button><button class="btn" id="clearBatch">Clear</button></div><div class="status" id="batchStatus"></div><div id="batchList" class="stack" style="margin-top:12px"></div></div></section>
+<section class="panel" id="page-scheduled"><div class="pagehead"><div><h1>Scheduled tasks</h1><p>Schedule supported downloads inside the native application.</p></div></div><div class="card"><h2>Schedule handoff</h2><p class="muted">The companion page cannot run background jobs after it is closed. Use the native app's download-card scheduling controls.</p><button class="btn primary" data-go="home">Prepare a URL</button></div></section>
+<section class="panel" id="page-observe"><div class="pagehead"><div><h1>Observe Sources</h1><p>Monitor channels and playlists through the native application.</p></div></div><div class="card"><h2>Source monitoring</h2><p class="muted">Create and manage monitored sources in YTDLnis. This HTML companion does not run background polling.</p><div class="notice warn">Background monitoring requires Android WorkManager/native services; a browser tab is not a replacement.</div><button class="btn primary" id="openNativeObserve">Open YTDLnis</button></div></section>
+<section class="panel" id="page-audio"><div class="pagehead"><div><h1>Audio configuration</h1><p>Choose a preferred audio profile before handing off a link.</p></div></div><div class="card"><div class="featurelist"><div class="feature">MP3 container</div><div class="feature">M4A container</div><div class="feature">AAC audio</div><div class="feature">FLAC audio</div><div class="feature">OPUS audio</div><div class="feature">WAV audio</div><div class="feature">Audio quality</div><div class="feature">Metadata & cover art</div><div class="feature">Embed thumbnail</div><div class="feature">Chapter splitting</div></div><div class="notice">These are configuration references. Actual conversion and tagging require the native processing engine, such as FFmpeg where supported.</div><button class="btn primary" data-go="home">Choose URL for audio</button></div></section>
+<section class="panel" id="page-video"><div class="pagehead"><div><h1>Video configuration</h1><p>Choose a preferred profile and review compatibility before handing off a URL.</p></div><span class="badge">Local preferences</span></div><div class="card"><div class="featurelist"><label class="feature">Container<select class="field" id="vContainer" style="margin-top:7px"><option>MP4</option><option>MKV</option><option>WEBM</option><option>Best available</option></select></label><label class="feature">Resolution<select class="field" id="vResolution" style="margin-top:7px"><option>Best available</option><option>2160p (4K)</option><option>1440p</option><option>1080p</option><option>720p</option><option>480p</option><option>360p</option></select></label><label class="feature">Video codec<select class="field" id="vCodec" style="margin-top:7px"><option>Any compatible</option><option>H.264 / AVC</option><option>H.265 / HEVC</option><option>AV1</option><option>VP9</option></select></label><label class="feature">Audio handling<select class="field" id="vAudio" style="margin-top:7px"><option>Best available audio</option><option>AAC</option><option>Opus</option><option>MP3</option><option>No audio</option></select></label><label class="feature">Frame rate<select class="field" id="vFps" style="margin-top:7px"><option>Source default</option><option>30 FPS maximum</option><option>60 FPS maximum</option></select></label><label class="feature">Subtitle handling<select class="field" id="vSubs" style="margin-top:7px"><option>Do not add subtitles</option><option>Best available subtitles</option><option>Automatic subtitles</option><option>Embed subtitles when supported</option></select></label></div><div class="setting"><div><strong>Embed thumbnail / metadata</strong><small>Request metadata embedding where the native engine supports it.</small></div><input class="toggle" type="checkbox" id="vMetadata" checked></div><div class="setting"><div><strong>Merge separate audio and video</strong><small>Requires a compatible native post-processing tool.</small></div><input class="toggle" type="checkbox" id="vMerge" checked></div><div class="row wrap" style="margin-top:14px"><button class="btn primary" id="saveVideoConfig">Save video preferences</button><button class="btn" id="copyVideoConfig">Copy configuration summary</button><button class="btn" data-go="home">Choose URL for video</button></div><div class="notice warn">These preferences are saved in this companion only. The native YTDLnis app supplies the real source-specific format list and performs the actual processing. This page does not claim these settings were applied to a native download.</div><div class="status" id="videoConfigStatus">Choose your preferred settings.</div></div></section>
+<section class="panel" id="page-subtitles"><div class="pagehead"><div><h1>Subtitles & Lyrics</h1><p>Subtitle and lyric options supported by the native engine or separate tools.</p></div></div><div class="card"><div class="featurelist"><div class="feature">List available subtitles</div><div class="feature">Automatic subtitles</div><div class="feature">Language selection</div><div class="feature">Embed subtitle track</div><div class="feature">Burn subtitles</div><div class="feature">SRT / VTT output</div><div class="feature">Chapter captions</div><div class="feature">Lyrics / LRC workflow</div></div><div class="notice">Subtitle availability depends on the source. Burning subtitles requires video processing support.</div></div></section>
+<section class="panel" id="page-editor"><div class="pagehead"><div><h1>Cut & Crop</h1><p>Advanced media editing options.</p></div></div><div class="card"><div class="featurelist"><div class="feature">Cut by timestamps</div><div class="feature">Multiple cut segments</div><div class="feature">Cut by chapters</div><div class="feature">Merge selected cuts</div><div class="feature">Crop video frame</div><div class="feature">Aspect ratio</div><div class="feature">Width / height</div><div class="feature">X / Y crop offsets</div><div class="feature">Split by chapters</div><div class="feature">SponsorBlock segments</div></div><div class="notice">Editing is performed by a native media processor. No fake output is generated by this companion page.</div></div></section>
+<section class="panel" id="page-commands"><div class="pagehead"><div><h1>Command templates</h1><p>Prepare reusable command notes for the native app.</p></div></div><div class="card"><h2>Template notes</h2><input class="field" id="templateName" placeholder="Template name"><textarea class="field" id="templateText" rows="4" style="margin-top:9px" placeholder="Describe the options you want to reuse."></textarea><button class="btn primary" id="saveTemplate" style="margin-top:9px">Save local template</button><div id="templateList" class="stack" style="margin-top:12px"></div><div class="notice warn">Saved templates here are notes only; they are not executable yt-dlp commands. Create and run actual templates in the native app.</div></div></section>
+<section class="panel" id="page-terminal"><div class="pagehead"><div><h1>Terminal</h1><p>Native terminal capability reference.</p></div></div><div class="card"><div class="notice warn">A browser page must not pretend to provide a system terminal. Use the terminal built into the installed YTDLnis app for supported yt-dlp commands.</div><button class="btn primary" id="openNativeTerminal">Open YTDLnis</button></div></section>
+<section class="panel" id="page-cookies"><div class="pagehead"><div><h1>Cookies & account access</h1><p>Manage authentication only within the official source app and its supported browser flow.</p></div></div><div class="card"><p class="muted">KYDLnis Companion does not collect, import, store, or transmit login cookies or passwords.</p><div class="notice">If a source requires sign-in, use the native application's supported cookie workflow and follow the source platform's rules.</div><button class="btn primary" id="openNativeCookies">Open YTDLnis</button></div></section>
+<section class="panel" id="page-packages"><div class="pagehead"><div><h1>Engine & packages</h1><p>View the documented components used by the native downloader.</p></div></div><div class="card"><table class="table"><thead><tr><th>Component</th><th>Purpose</th><th>Where managed</th></tr></thead><tbody><tr><td>yt-dlp</td><td>Site extraction and format metadata</td><td>Native app</td></tr><tr><td>FFmpeg / ffprobe</td><td>Merge and post-processing</td><td>Native app</td></tr><tr><td>Python</td><td>Runtime for yt-dlp</td><td>Native app</td></tr><tr><td>JS runtimes</td><td>Supported extractor challenges</td><td>Native app</td></tr><tr><td>aria2c</td><td>Optional download engine</td><td>Native app</td></tr></tbody></table><div class="notice warn">These components cannot be loaded into a normal HTML page as Android binaries. Install and update them through the official native app.</div><button class="btn primary" id="openNativePackages">Open YTDLnis</button></div></section>
+<section class="panel" id="page-history"><div class="pagehead"><div><h1>History & logs</h1><p>Browser-side URL history for this companion.</p></div><button class="btn danger" id="clearHistory">Clear history</button></div><div class="card"><div id="historyList" class="stack"></div><div class="notice">Native download logs and detailed failure reports remain inside the native app.</div></div></section>
+<section class="panel" id="page-files"><div class="pagehead"><div><h1>File manager</h1><p>Open your browser's downloads list or use the native app's file manager.</p></div></div><div class="card"><p class="muted">For privacy and browser security, this page cannot browse YTDLnis' private folders.</p><div class="row wrap"><button class="btn primary" id="browserDownloads">Open browser downloads</button><button class="btn" id="openNativeFiles">Open YTDLnis</button></div></div></section>
+<section class="panel" id="page-backup"><div class="pagehead"><div><h1>Backup & Restore</h1><p>Export and restore this companion's local preferences.</p></div></div><div class="card"><p class="muted">This backup contains only KYDLnis Companion settings, local queue, URL history and template notes—not native app data or downloaded media.</p><div class="row wrap"><button class="btn primary" id="exportBackup">Export companion backup</button><label class="btn" for="restoreFile">Restore backup</label><input id="restoreFile" type="file" accept="application/json" hidden></div><div class="status" id="backupStatus"></div></div></section>
+<section class="panel" id="page-settings"><div class="pagehead"><div><h1>Settings</h1><p>Customize the companion and default handoff behavior.</p></div></div><div class="card">
+ <div class="setting"><div><strong>Default handoff type</strong><small>Choose the media task type sent to the native app.</small></div><select class="field" id="defaultType" style="max-width:145px"><option value="video">Video</option><option value="audio">Audio</option><option value="command">Command</option></select></div>
+ <div class="setting"><div><strong>Background handoff</strong><small>Ask the native app to process without showing its download card.</small></div><input class="toggle" type="checkbox" id="backgroundMode"></div>
+ <div class="setting"><div><strong>Incognito companion history</strong><small>Do not save new URLs to this page's history.</small></div><input class="toggle" type="checkbox" id="incognito"></div>
+ <div class="setting"><div><strong>Reduce motion</strong><small>Use fewer interface animations.</small></div><input class="toggle" type="checkbox" id="reduceMotion"></div>
+ <div class="setting"><div><strong>Theme</strong><small>Dark or light interface.</small></div><button class="btn mini" id="settingsTheme">Toggle theme</button></div>
+ <div class="setting"><div><strong>Clear local data</strong><small>Remove companion history, queue and notes.</small></div><button class="btn danger mini" id="clearAll">Clear data</button></div>
+ <div class="status" id="settingsStatus">Settings are saved locally in this browser.</div>
+</div></section>
+</main>
+</div>
+<nav class="mobilebar" id="mobileNav"><button class="active" data-page="home"><span>⌂</span>Home</button><button data-page="downloads"><span>⇩</span>Downloads</button><button data-page="queue"><span>☷</span>Queue</button><button data-page="playlists"><span>▤</span>Batch</button><button data-page="settings"><span>⚙</span>Settings</button></nav>
+<div class="footer">KYDLnis Companion is an independent interface and is not affiliated with or endorsed by the YTDLnis project. Use the official app and respect each source's terms and content rights.</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const KEY='kydlnis_companion_v2';
+let state={queue:[],history:[],templates:[],settings:{type:'video',background:false,incognito:false,reduceMotion:false}};
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');state={...state,...s,settings:{...state.settings,...(s.settings||{})}}}catch{}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch{};refreshCounts()}
+function validUrl(s){try{const u=new URL(s.trim());return ['http:','https:'].includes(u.protocol)?u:null}catch{return null}}
+function message(id,msg,type=''){const el=$(id);if(!el)return;el.textContent=msg;el.className='status '+type}
+function nav(page){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const titles={home:'Home',downloads:'Downloads',queue:'Queue',playlists:'Playlists & Batch',scheduled:'Scheduled',observe:'Observe Sources',audio:'Audio Tools',video:'Video Tools',subtitles:'Subtitles & Lyrics',editor:'Cut & Crop',commands:'Command Templates',terminal:'Terminal',cookies:'Cookies',packages:'Packages & Engine',history:'History & Logs',files:'File Manager',backup:'Backup & Restore',settings:'Settings'};document.title='KYDLnis · '+(titles[page]||'Companion');window.scrollTo({top:0,behavior:state.settings.reduceMotion?'auto':'smooth'})}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>nav(b.dataset.page)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>nav(b.dataset.go)));
+let activeYTPlayer=null;
+let ytApiPromise=null;
+function loadYouTubeApi(){
+ if(window.YT&&window.YT.Player)return Promise.resolve(window.YT);
+ if(ytApiPromise)return ytApiPromise;
+ ytApiPromise=new Promise((resolve,reject)=>{
+  const timeout=setTimeout(()=>reject(new Error('YouTube player API timed out. Check connection or content blockers.')),12000);
+  const previous=window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady=()=>{clearTimeout(timeout);if(typeof previous==='function')try{previous()}catch{};resolve(window.YT)};
+  if(!document.querySelector('script[data-kydlnis-youtube-api]')){
+   const tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';tag.async=true;tag.dataset.kydlnisYoutubeApi='1';
+   tag.onerror=()=>{clearTimeout(timeout);reject(new Error('Could not load the official YouTube player API.'))};
+   document.head.appendChild(tag);
+  }
+ });
+ return ytApiPromise;
+}
+function youtubeErrorInfo(code){
+ const map={
+  2:['Invalid YouTube video ID','Check the copied link and make sure its video ID is valid.'],
+  5:['YouTube HTML5 playback error','The browser or player could not play this video. Update the browser and try again.'],
+  100:['Video unavailable','The video may have been deleted, made private, or is unavailable.'],
+  101:['Embedding is disabled','The video owner does not allow playback on other websites. Open it on YouTube instead.'],
+  150:['Embedding is disabled (Error 150)','This is the same restriction as Error 101. The owner has disabled embedded playback; it cannot be fixed by changing this page.'],
+  153:['Player identity / Referer missing','The player did not receive the required HTTP Referer or client identification. Open this page from a normal HTTPS website or localhost, then retry.']
+ };
+ return map[code]||['YouTube playback error ('+code+')','YouTube could not play this video in the embedded player. Open it on YouTube to check availability.'];
+}
+function showYouTubeFallback(id,code,detail){
+ const box=$('preview');box.innerHTML='';
+ const wrap=document.createElement('div');wrap.className='empty';wrap.style.maxWidth='520px';
+ const title=document.createElement('b');title.textContent=detail[0];
+ const text=document.createElement('p');text.textContent=detail[1];text.style.margin='7px 0 14px';
+ const open=document.createElement('a');open.href='https://www.youtube.com/watch?v='+encodeURIComponent(id);open.target='_blank';open.rel='noopener noreferrer';open.className='btn primary';open.textContent='Open in YouTube ↗';
+ const codeText=document.createElement('div');codeText.className='tiny muted';codeText.style.marginTop='12px';codeText.textContent='Player error code: '+code;
+ wrap.append(title,text,open,codeText);box.append(wrap);
+ message('homeStatus',detail[0]+'. '+detail[1],'error');
+}
+function renderPreview(url){
+ const box=$('preview');box.innerHTML='';$('downloadMp4Btn').hidden=true;$('downloadMp4Btn').dataset.url='';if(activeYTPlayer){try{activeYTPlayer.destroy()}catch{};activeYTPlayer=null}
+ const host=url.hostname.toLowerCase().replace(/^www\./,'').replace(/^m\./,'');let id=null;
+ if(host==='youtu.be')id=url.pathname.split('/').filter(Boolean)[0];
+ else if(['youtube.com','music.youtube.com','youtube-nocookie.com'].includes(host)){
+  if(url.pathname==='/watch')id=url.searchParams.get('v');
+  else{const parts=url.pathname.split('/').filter(Boolean);if(['embed','shorts','live','v'].includes(parts[0]))id=parts[1]}
+ }
+ if(id){
+  if(!/^[A-Za-z0-9_-]{11}$/.test(id)){showYouTubeFallback('invalid00000',2,youtubeErrorInfo(2));return}
+  const mount=document.createElement('div');mount.id='kydlnis-yt-player';mount.style.width='100%';mount.style.height='100%';box.append(mount);
+  message('homeStatus','Loading official YouTube player…','');
+  loadYouTubeApi().then(YT=>{
+   activeYTPlayer=new YT.Player('kydlnis-yt-player',{
+    width:'100%',height:'100%',videoId:id,
+    playerVars:{playsinline:1,enablejsapi:1,rel:0, ...(location.protocol==='http:'||location.protocol==='https:'?{origin:location.origin}:{})},
+    events:{
+     onReady:()=>message('homeStatus','YouTube player ready. Playback availability is controlled by YouTube.','good'),
+     onError:event=>showYouTubeFallback(id,event.data,youtubeErrorInfo(event.data)),
+     onAutoplayBlocked:()=>message('homeStatus','Autoplay was blocked by your browser. Press Play in the YouTube player.','')
+    }
+   });
+  }).catch(err=>{
+   showYouTubeFallback(id,'API', ['YouTube player could not load',err.message+' You can still open the video directly on YouTube.']);
+  });
+  return;
+ }
+ if(/\.(mp4|webm|ogv|mp3|m4a|ogg|wav|aac)(?:$)/i.test(url.pathname)){
+  const audio=/\.(mp3|m4a|ogg|wav|aac)$/i.test(url.pathname);const m=document.createElement(audio?'audio':'video');
+  m.controls=true;m.preload='metadata';m.src=url.href;if(!audio)m.playsInline=true;
+  m.addEventListener('loadedmetadata',()=>message('homeStatus','Media metadata loaded. Ready for playback.','good'),{once:true});
+  m.addEventListener('error',()=>{
+   const errors={1:'Playback was interrupted or aborted.',2:'A network error prevented the media from loading.',3:'The media could not be decoded. The file may be damaged or use an unsupported codec.',4:'The media format or source is not supported by this browser.'};
+   const code=m.error?m.error.code:0;message('homeStatus',(errors[code]||'The browser could not play this media URL')+' Check the direct file URL, format, server access and CORS settings.','error');
+  },{once:true});
+  box.append(m);message('homeStatus','Loading direct media…','');
+  if(/\.mp4$/i.test(url.pathname)) verifyMp4Source(url.href);
+  return;
+ }
+ box.innerHTML='<div class="empty"><b>Link recognized</b>No built-in preview for this URL type. You can still hand it to the native app.</div>';
+ message('homeStatus','URL is valid, but this browser cannot preview this link type.','');
+}
+function extractEmbedSource(raw){
+ const text=String(raw||'').trim();if(!text)return null;
+ if(/^https?:\/\//i.test(text))return validUrl(text);
+ const match=text.match(/<iframe\b[^>]*\bsrc\s*=\s*(["'])(.*?)\1/i);
+ if(!match)return null;
+ try{const u=new URL(match[2]);return ['https:','http:'].includes(u.protocol)?u:null}catch{return null}
+}
+function verifyMp4Source(raw){
+ const button=$('downloadMp4Btn');button.hidden=true;button.dataset.url='';
+ fetch(raw,{method:'HEAD'}).then(response=>{
+  if(!response.ok)throw new Error('Server returned HTTP '+response.status+'.');
+  const mime=(response.headers.get('content-type')||'').split(';')[0].trim().toLowerCase();
+  if(mime!=='video/mp4')throw new Error('The server MIME type is '+(mime||'missing')+', not video/mp4.');
+  button.dataset.url=raw;button.hidden=false;message('homeStatus','Verified direct source: MIME type video/mp4. Download button is ready.','good');
+ }).catch(err=>message('homeStatus','MP4 download is unavailable: '+err.message+' The server must allow cross-origin requests and expose its Content-Type header.','error'));
+}
+async function downloadVerifiedMp4(){
+ const raw=$('downloadMp4Btn').dataset.url;if(!raw)return;
+ const button=$('downloadMp4Btn');button.disabled=true;button.textContent='Checking and downloading…';
+ try{
+  const response=await fetch(raw);if(!response.ok)throw new Error('HTTP '+response.status);
+  const mime=(response.headers.get('content-type')||'').split(';')[0].trim().toLowerCase();
+  if(mime!=='video/mp4')throw new Error('The response MIME type is '+(mime||'missing')+', not video/mp4.');
+  const blob=await response.blob();if(blob.type&&blob.type.toLowerCase()!=='video/mp4')throw new Error('Downloaded blob is not video/mp4.');
+  const objectUrl=URL.createObjectURL(new Blob([blob],{type:'video/mp4'}));const a=document.createElement('a');a.href=objectUrl;
+  let name='video.mp4';try{name=decodeURIComponent(new URL(raw).pathname.split('/').pop())||name}catch{};if(!/\.mp4$/i.test(name))name='video.mp4';
+  a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(objectUrl),60000);message('homeStatus','MP4 download started. Check your browser Downloads.','good');
+ }catch(err){message('homeStatus','Download failed: '+err.message+' Check that the source is a direct MP4 URL and permits CORS.','error')}
+ finally{button.disabled=false;button.textContent='Download verified MP4'}
+}
+function addHistory(url){if(state.settings.incognito)return;state.history=[url,...state.history.filter(x=>x!==url)].slice(0,30);save();renderHistory()}
+function inspect(){const raw=$('mediaUrl').value.trim();const url=extractEmbedSource(raw)||validUrl(raw);if(!url){message('homeStatus','Enter a valid HTTP/HTTPS URL or paste a complete iframe embed code.','error');return}renderPreview(url);addHistory(url.href)}
+function previewIframeCode(){const raw=$('embedCode').value.trim();const url=extractEmbedSource(raw);if(!url){message('homeStatus','No valid iframe src found. Paste the complete YouTube iframe code.','error');return}const host=url.hostname.toLowerCase().replace(/^www\./,'');if(!['youtube.com','youtube-nocookie.com','m.youtube.com'].includes(host)){message('homeStatus','For safety, this iframe preview field currently accepts YouTube embed URLs only.','error');return}$('mediaUrl').value=url.href;renderPreview(url);addHistory(url.href)}
+function renderHistory(){const boxes=[$('recentList'),$('historyList')];boxes.forEach(box=>{if(!box)return;box.innerHTML='';if(!state.history.length){box.innerHTML='<div class="muted tiny">No recent links yet.</div>';return}state.history.forEach(u=>{const d=document.createElement('div');d.className='listitem';const t=document.createElement('div');t.className='desc';const a=document.createElement('strong');a.textContent=u;const s=document.createElement('small');s.textContent='Saved in companion history';t.append(a,s);const b=document.createElement('button');b.className='btn mini';b.textContent='Use';b.onclick=()=>{$('mediaUrl').value=u;nav('home');inspect()};d.append(t,b);box.append(d)})})}
+function renderQueue(){const box=$('queueList');box.innerHTML='';if(!state.queue.length){box.innerHTML='<div class="muted tiny">Queue is empty. Add URLs from Home or Batch.</div>';return}state.queue.forEach((q,i)=>{const d=document.createElement('div');d.className='listitem';const x=document.createElement('div');x.className='desc';const b=document.createElement('strong');b.textContent=q.url;const s=document.createElement('small');s.textContent='Local handoff item · '+q.type+' · '+q.status;x.append(b,s);const send=document.createElement('button');send.className='btn mini primary';send.textContent='Send';send.onclick=()=>handoff(q.url,q.type);const del=document.createElement('button');del.className='btn mini danger';del.textContent='×';del.onclick=()=>{state.queue.splice(i,1);save();renderQueue()};d.append(x,send,del);box.append(d)})}
+function refreshCounts(){$('statQueue').textContent=state.queue.length;$('statHistory').textContent=state.history.length;$('statBatch').textContent=state.queue.length;renderQueue();renderHistory()}
+function handoff(raw,type){const url=validUrl(raw);if(!url){message('homeStatus','Invalid URL.','error');return}const background=!!state.settings.background;const intent='intent://send/#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT='+encodeURIComponent(url.href)+';S.TYPE='+encodeURIComponent(type)+';B.BACKGROUND='+background+';package=com.deniscerri.ytdl;end';const a=document.createElement('a');a.href=intent;a.style.display='none';document.body.append(a);a.click();a.remove();state.queue.unshift({url:url.href,type,status:'Handoff requested',time:Date.now()});state.queue=state.queue.slice(0,60);save();renderQueue();message('homeStatus','Android handoff requested. If YTDLnis is installed, it should receive the link. Check the native app to confirm.','good')}
+$('inspectBtn').onclick=inspect;$('mediaUrl').addEventListener('keydown',e=>{if(e.key==='Enter')inspect()});$('previewEmbedBtn').onclick=previewIframeCode;$('clearEmbedBtn').onclick=()=>{$('embedCode').value=''};$('downloadMp4Btn').onclick=downloadVerifiedMp4;
+$('sendVideo').onclick=()=>handoff($('mediaUrl').value,'video');$('sendAudio').onclick=()=>handoff($('mediaUrl').value,'audio');$('sendCommand').onclick=()=>handoff($('mediaUrl').value,'command');
+$('copyUrl').onclick=async()=>{try{await navigator.clipboard.writeText($('mediaUrl').value);message('homeStatus','URL copied.','good')}catch{message('homeStatus','Clipboard access unavailable.','error')}};
+$('parseBatch').onclick=()=>{const lines=$('batchInput').value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);let n=0;lines.forEach(line=>{const u=validUrl(line);if(u){state.queue.push({url:u.href,type:state.settings.type,status:'Waiting for handoff',time:Date.now()});n++}});save();message('batchStatus',n+' valid URL(s) added to the local queue. Invalid lines were skipped.',n?'good':'error');$('batchList').innerHTML='<div class="muted tiny">'+n+' item(s) ready in Queue.</div>'};
+$('clearBatch').onclick=()=>{$('batchInput').value='';$('batchList').innerHTML='';message('batchStatus','Batch input cleared.')};
+$('clearQueue').onclick=()=>{state.queue=[];save();renderQueue()};
+$('saveTemplate').onclick=()=>{const name=$('templateName').value.trim(),body=$('templateText').value.trim();if(!name||!body){alert('Enter a template name and notes.');return}state.templates.unshift({name,body});save();renderTemplates();$('templateName').value='';$('templateText').value=''};
+function renderTemplates(){const box=$('templateList');box.innerHTML='';if(!state.templates.length){box.innerHTML='<div class="muted tiny">No local notes saved.</div>';return}state.templates.forEach((t,i)=>{const d=document.createElement('div');d.className='listitem';const x=document.createElement('div');x.className='desc';const b=document.createElement('strong');b.textContent=t.name;const s=document.createElement('small');s.textContent=t.body;x.append(b,s);const del=document.createElement('button');del.className='btn mini danger';del.textContent='Delete';del.onclick=()=>{state.templates.splice(i,1);save();renderTemplates()};d.append(x,del);box.append(d)})}
+$('clearHistory').onclick=()=>{state.history=[];save();renderHistory()};
+$('themeBtn').onclick=$('settingsTheme').onclick=()=>document.body.classList.toggle('light');
+function openNative(){const raw=$('mediaUrl').value.trim();if(raw){handoff(raw,state.settings.type);return}const a=document.createElement('a');a.href='intent://send/#Intent;action=android.intent.action.SEND;type=text/plain;package=com.deniscerri.ytdl;end';a.click()}
+['openNativeObserve','openNativeTerminal','openNativeCookies','openNativePackages','openNativeFiles'].forEach(id=>$(id).onclick=openNative);
+$('browserDownloads').onclick=()=>{message('settingsStatus','Use your browser menu to open Downloads.','')};
+function syncSettings(){ $('defaultType').value=state.settings.type;$('backgroundMode').checked=state.settings.background;$('incognito').checked=state.settings.incognito;$('reduceMotion').checked=state.settings.reduceMotion}
+$('defaultType').onchange=e=>{state.settings.type=e.target.value;save()};$('backgroundMode').onchange=e=>{state.settings.background=e.target.checked;save()};$('incognito').onchange=e=>{state.settings.incognito=e.target.checked;save()};$('reduceMotion').onchange=e=>{state.settings.reduceMotion=e.target.checked;document.body.style.scrollBehavior=e.target.checked?'auto':'smooth';save()};
+$('clearAll').onclick=()=>{if(confirm('Clear companion queue, history, and templates?')){state.queue=[];state.history=[];state.templates=[];save();renderTemplates();message('settingsStatus','Companion data cleared.','good')}};
+$('exportBackup').onclick=()=>{const blob=new Blob([JSON.stringify({format:'kydlnis-companion-backup',version:2,state},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='kydlnis-companion-backup.json';a.click();URL.revokeObjectURL(a.href);message('backupStatus','Companion backup exported.','good')};
+$('restoreFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(data.format!=='kydlnis-companion-backup'||!data.state)throw Error();state={...state,...data.state,settings:{...state.settings,...data.state.settings}};save();syncSettings();renderTemplates();message('backupStatus','Backup restored.','good')}catch{message('backupStatus','Invalid or unsupported backup file.','error')}e.target.value=''};
+
+function getVideoConfig(){
+ return {container:$('vContainer').value,resolution:$('vResolution').value,codec:$('vCodec').value,audio:$('vAudio').value,fps:$('vFps').value,subtitles:$('vSubs').value,metadata:$('vMetadata').checked,merge:$('vMerge').checked};
+}
+function setVideoConfig(c){
+ if(!c)return;
+ if(c.container)$('vContainer').value=c.container;if(c.resolution)$('vResolution').value=c.resolution;
+ if(c.codec)$('vCodec').value=c.codec;if(c.audio)$('vAudio').value=c.audio;if(c.fps)$('vFps').value=c.fps;
+ if(c.subtitles)$('vSubs').value=c.subtitles;if(typeof c.metadata==='boolean')$('vMetadata').checked=c.metadata;
+ if(typeof c.merge==='boolean')$('vMerge').checked=c.merge;
+}
+$('saveVideoConfig').onclick=()=>{state.settings.videoConfig=getVideoConfig();save();message('videoConfigStatus','Video preferences saved locally. They are not yet applied to a native download.','good')};
+$('copyVideoConfig').onclick=async()=>{const c=getVideoConfig();const summary=['KYDLnis video preferences',...Object.entries(c).map(([k,v])=>k+': '+v)].join('\n');try{await navigator.clipboard.writeText(summary);message('videoConfigStatus','Configuration summary copied.','good')}catch{message('videoConfigStatus','Clipboard access unavailable.','error')}};
+
+load();syncSettings();setVideoConfig(state.settings.videoConfig);refreshCounts();renderTemplates();
+</script>
+</body>
+</html>
